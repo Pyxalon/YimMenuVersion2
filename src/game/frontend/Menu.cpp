@@ -12,7 +12,8 @@
 #include "submenus/Debug.hpp"
 #include "submenus/World.hpp"
 #include "Onboarding.hpp"
-
+#include "submenus/ExtraSubmenus.hpp"
+#include "submenus/TinkerScripts.hpp"
 namespace YimMenu
 {
 	void Menu::Init()
@@ -27,6 +28,7 @@ namespace YimMenu
 		UIManager::AddSubmenu(std::make_shared<Submenus::Recovery>());
 		UIManager::AddSubmenu(std::make_shared<Submenus::Settings>());
 		UIManager::AddSubmenu(std::make_shared<Submenus::Debug>());
+		UIManager::AddSubmenu(std::make_shared<Submenus::TinkerScripts>());
 
 		Renderer::AddRendererCallback(
 		    [&] {
