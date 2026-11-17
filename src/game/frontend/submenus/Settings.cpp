@@ -8,9 +8,9 @@
 #include "game/frontend/submenus/Settings/LuaScripts.hpp"
 #include "game/frontend/submenus/Settings/GUISettings.hpp"
 #include "game/frontend/submenus/Settings/ASILoader.hpp"
+#include "game/frontend/submenus/ExtraSubmenus.hpp"
 #include "game/features/theme/theme.hpp"
 #include <imgui.h>
-
 namespace YimMenu::Submenus
 {
 	// TODO: refactor this
@@ -66,7 +66,9 @@ namespace YimMenu::Submenus
 		// Players
 		uiStyle->AddItem(std::make_shared<ListCommandItem>("styleselector"_J));
 		uiStyle->AddItem(std::make_shared<BoolCommandItem>("menubgchristmas"_J));
-
+		uiStyle->AddItem(std::make_unique<ImGuiItem>([] {
+			ImGui::Checkbox("Extra Submenus", &g_ShowExtraSubmenus);
+		}));
 
 		playerEsp->AddItem(std::make_shared<BoolCommandItem>("espdrawplayers"_J));
 		playerEsp->AddItem(std::make_shared<ConditionalItem>("espdrawplayers"_J, std::make_shared<BoolCommandItem>("espdrawdeadplayers"_J)));
@@ -79,7 +81,6 @@ namespace YimMenu::Submenus
 		playerEsp->AddItem(std::make_shared<ConditionalItem>("espdrawplayers"_J, std::make_shared<BoolCommandItem>("espskeletonplayers"_J, "Player Skeleton")));
 		playerEsp->AddItem(std::make_shared<ConditionalItem>("espdrawplayers"_J, std::make_shared<ColorCommandItem>("skeletoncolorplayers"_J)));
 
-		
 
 		// Peds
 		pedEsp->AddItem(std::make_shared<BoolCommandItem>("espdrawpeds"_J));
